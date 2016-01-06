@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html><head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+	<title>MyIRCView</title>
+
+	<script src="sockio.js"></script>
+	<script src="lodash.min.js"></script>
+	<script src="client.js"></script>
+	<script src="ICanHaz.min.js"></script>
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/css.css" />
+
+</head><body>
+
+	<div id="chatArea">
+	</div>
+
+	<div id="controls">
+		<input id="joinBtn" type="button" onClick="joinPrompt();" value="Join"></input></span>
+		<input id="clearBtn" type="button" onClick="clearChat();" value="Clear"></input></span>
+		<input id="showJoins" type="checkbox" onChange="toggleShowEvents(this);"></input>
+		<label for="showJoins">Joins</label>
+		<input id="showParts" type="checkbox" onChange="toggleShowEvents(this);"></input>
+		<label for="showParts">Parts</label>
+		<input id="showQuits" type="checkbox" onChange="toggleShowEvents(this);"></input>
+		<label for="showQuits">Quits</label>
+	</div>
+
+	<div id="statsArea">
+	</div>
+
+<script id="channelsPartial" type="text/html">
+	<span class="channels">
+	({{# channels }}
+		{{ . }}
+	{{/ channels }})
+	</span>
+</script>
+
+<script id="messagePartial" type="text/html">
+	<span class="message">{{ message }}</span>
+</script>
+
+<script id="serverPartial" type="text/html">
+	<span class="server" style="color: #{{ serverColor }}; background-color: #{{ serverbgColor }}">{{ server }}</span>
+</script>
+
+<script id="channelPartial" type="text/html">
+	<span class="channel" style="color: #{{ channelColor }}; background-color: #{{ channelbgColor }}">{{ channel }}</span>
+</script>
+
+<script id="nickPartial" type="text/html">
+	<a href="javascript:requestWhois('{{ nick }}', '{{ server }}');"><span class="nick" style="color: #{{ nickColor }}; background-color: #{{ nickbgColor }}">{{ nick }}</a></span>
+</script>
+
+<script id="join" type="text/html">
+	{{> serverPartial }} {{> channelPartial }} {{> nickPartial }} {{> messagePartial }}<br>
+</script>
+
+<script id="quit" type="text/html">
+	{{> serverPartial }} <span class="channel">*</span> {{> nickPartial }} {{> messagePartial }} {{> channelsPartial }}<br>
+</script>
+
+<script id="part" type="text/html">
+	{{> serverPartial }} {{> channelPartial }} {{> nickPartial }} {{> messagePartial }}<br>
+</script>
+
+<script id="message" type="text/html">
+	{{> serverPartial }} {{> channelPartial }} {{> nickPartial }} {{> messagePartial }}<br>
+</script>
+
+<script id="link" type="text/html">
+	<a style="color: #{{ color }}; background-color: #{{ colorInv }}" href="{{ url }}" target=_blank>{{ url }}</a>
+</script>
+
+<script id="registered" type="text/html">
+	Connected!<br>
+</script>
+
+<script id="motd" type="text/html">
+	<span class="motd">{{> serverPartial }} {{{ motd }}}</span><br>
+</script>
+
+<script id="topic" type="text/html">
+	<span class="topic">Topic for {{ server }}{{ channel }} is {{ topic }}</span><br>
+</script>
+
+<script id="whois" type="text/html">
+	<span class="whois">
+	Whois for {{ nick }} ({{ realname }}) {{ user }}@{{ host }} on {{ server }} ({{ serverinfo }}) {{> channelsPartial }}
+	</span><br>
+</script>
+
+<script id="names" type="text/html">
+	<span class="names">
+	Users in {{ server }}{{ channel }}
+	{{# nicks }}
+		{{ mode }}{{ nick }} 
+	{{/ nicks }}
+	</span><br>
+</script>
+
+<script id="stats" type="text/html">
+	{{# stats }}
+		<a class="closeBtn" href="javascript:requestPart('{{ channel }}', '{{ server }}')">X</a>
+		<input id="{{ server }}{{ channel }}" type="checkBox" onChange="toggleViewChannels(this);" {{ checked }}>
+		<label for="{{ server }}{{ channel }}">{{ server }}{{ channel }}: {{ count }}</label>
+	{{/ stats }}
+</script>
+
+<script id="error" type="text/html">
+	{{ message }}<br>
+</script>
+
+</body></html>

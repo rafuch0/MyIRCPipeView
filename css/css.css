@@ -1,0 +1,109 @@
+#statsArea
+{
+	height: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	background-color: #c3c3c3;
+}
+
+#controls
+{
+	height: 20px;
+	float: right;
+	color: #000000;
+	background-color: #c3c3c3;
+}
+
+#chatArea
+{
+	background-color: #000000;
+	font-family: monospace;
+}
+
+#joinBtn,#clearBtn
+{
+	height: 20px;
+	width: 40px;
+	float: right;
+	font-size: 10px;
+}
+
+.closeBtn
+{
+	font-weight: bold;
+	font-decoration: none;
+	color: #ff0000;
+}
+
+.messageLink
+{
+	text-decoration: underline;
+	color: #f3d;
+	background-color: #dddddd;
+}
+
+.server
+{
+	background-color: #bdbdbd;
+	width: 65px;
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.channel
+{
+	background-color: #cecece;
+	width: 100px;
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.nick
+{
+	background-color: #ededed;
+	width: 100px;
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.message
+{
+	color: #ffffff;
+}
+
+.channels
+{
+	color: #ffffff;
+}
+
+.topic
+{
+	background-color: #8d8d8d;
+	font-weight: bold;
+}
+
+.motd
+{
+	background-color: #c3c3c3;
+	font-weight: bold;
+	color: red;
+}
+
+.whois
+{
+	background-color: #c3c3c3;
+	color: #000000;
+}
+
+.names
+{
+	background-color: #b2b2b2;
+}
+
+body
+{
+	background-color: #000000;
+}
